@@ -1,0 +1,67 @@
+﻿@model Customer
+@{
+    ViewData["Title"] = "Relax Hotel | Create Customer";
+}
+<div class="modal fade" id="AddCustomer" tabindex="-1" aria-labelledby="AddCustomerModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-dark text-white">
+                <div class="d-flex align-items-center justify-content-center">
+                    <img src="~/img/logo-hotel-bg.png" width="40px" />
+                    <h5 class="ms-2">@ViewData["Title"]</h5>
+                </div>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form asp-action="Create" asp-controller="Customer" method="post" enctype="multipart/form-data">
+                    <input type="hidden" asp-for="CustomerID" />
+                    <div class="row">
+                            <div class="col-12 col-md-6 form-group">
+                                <label asp-for="FirstName"></label>
+                                <span asp-validation-for="FirstName" class="text-danger"></span>
+                                <input asp-for="FirstName" type="text" class="form-control" placeholder="Enter first name" />
+                            </div>
+                            <div class="col-12 col-md-6 form-group">
+                                <label asp-for="LastName"></label>
+                                <span asp-validation-for="LastName" class="text-danger"></span>
+                                <input asp-for="LastName" type="text" class="form-control"  placeholder="Enter last name"/>
+                            </div>
+                            <div class="col-12 col-md-6 form-group">
+                            <label asp-for="Sex" class="form-label">Gender</label>
+                                <span asp-validation-for="Sex" class="text-danger"></span>
+                                <select asp-for="Sex" class="form-select">
+                                    <option value="">Select</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                </select>
+                            </div>
+                            <div class="col-12 col-md-6 form-group">
+                                <label asp-for="Email" class="form-label"></label>
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                                <input asp-for="Email" type="email" class="form-control" placeholder="Enter Email" />
+                            </div>
+                             <div class="col-12 col-md-6 form-group">
+                                <label asp-for="PhoneNumber">Phone</label>
+                                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                                <input asp-for="PhoneNumber" type="tel" class="form-control" placeholder="Enter phone number" />
+                            </div>
+                            <div class="col-12 col-md-6 form-group">
+                            <label asp-for="PassportNumber">Passport</label>
+                                <span asp-validation-for="PassportNumber" class="text-danger"></span>
+                                <input asp-for="PassportNumber" type="text" class="form-control" placeholder="Enter passport number" />
+                            </div>
+                            <div class="col-12 col-md-6 form-group">
+                                <label asp-for="Country"></label>
+                                <span asp-validation-for="Country" class="text-danger"></span>
+                                <input asp-for="Country" type="text" class="form-control" placeholder="Enter country" />
+                            </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
