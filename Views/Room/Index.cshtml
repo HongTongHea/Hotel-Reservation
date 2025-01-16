@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Hotel_Reservation.Models.Room>
 
 @{
-    ViewData["Title"] = "Relax Hotel | Room Details";
+    ViewData["Title"] = "Relax Hotel | ព័ត៌មាន​​លម្អិតបន្ទប់";
 }
 <div class="card mb-3">
     <div class="card-header bg-dark text-white">
@@ -13,7 +13,7 @@
     <div class="card-body ">
         <div class="mb-3">
             <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#AddRoom">
-                <i class="fa-solid fa-circle-plus"></i> Add Room
+                <i class="fa-solid fa-circle-plus"></i> បង្កើតថ្មី
             </button>
         </div>
         <div class="row">
@@ -24,7 +24,7 @@
                     <div class="col-md-4 mb-4">
                         <div class="card">
                             <div class="card-header bg-dark text-white text-center">
-                                @item.RoomNumber
+                                លេខបន្ទប់ៈ ​​​@item.RoomNumber
                             </div>
                             <div class="card-body text-center">
                                 @if (!string.IsNullOrEmpty(item.Pictures))
@@ -36,13 +36,13 @@
                                     <img src="/img/default-img.png" class="card-img-top img-thumbnail mb-2 room-picture" alt="Default Picture" style="width: 350px; height: 200px; object-fit: cover;" />
                                 }
 
-                                <h5 class="card-title">@item.RoomType Room</h5>
+                                <h5 class="card-title">​<strong>ប្រភេទបន្ទប់ៈ​​</strong> ​​​@item.RoomType Room</h5>
                                 <p class="card-text text-start">
-                                    <strong>Availability:</strong> @item.AvailabilityStatus <br>
-                                    <strong>Floor:</strong> @item.Floor <br>
-                                    <strong>Bed Count:</strong> @item.BedCount <br>
-                                    <strong>Price:</strong> @item.RoomPrice <br>
-                                    <strong>Description:</strong> @item.Description
+                                    <strong>ស្ថានភាពបន្ទប់ៈ</strong> @item.AvailabilityStatus <br>
+                                    <strong>ជាន់បន្ទប់ៈ</strong> @item.Floor <br>
+                                    <strong>ចំនួនគ្រែៈ</strong> @item.BedCount <br>
+                                    <strong>តម្លៃបន្ទប់ៈ</strong> @item.RoomPrice <br>
+                                    <strong>ការពិពណ៌នាៈ</strong> @item.Description
                                 </p>
                             </div>
                             <div class="card-footer text-end">

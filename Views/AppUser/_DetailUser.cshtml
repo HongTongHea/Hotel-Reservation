@@ -1,6 +1,6 @@
 ﻿@model AppUser
 @{
-    ViewData["Title"] = "Relax Hotel | User Details";
+    ViewData["Title"] = "Relax Hotel | ព័ត៌មាន​​លម្អិតអ្នកប្រើប្រាស់";
 }
 
 <div class="modal fade" id="DetailUser-@Model.AppUserID" tabindex="-1" aria-labelledby="DetailUserModalLabel" aria-hidden="true">
@@ -19,9 +19,9 @@
                         <img src="@Model.Pictures" alt="User Image" class="img-thumbnail" style="width: 150px; height: 150px; object-fit: cover;" />
                     </div>
                     <div class="col-md-8 text-start">
-                        <p class="mb-3"><strong>Username: </strong>@Model.Username</p>
-                        <p><strong>Role:</strong> @Model.Role</p>
-                        <p class="mb-3"><strong>Email:</strong> @Model.Email</p>
+                        <p class="mb-3"><strong>ឈ្នោះអ្នកប្រើប្រាស់: </strong>@Model.Username</p>
+                        <p><strong>តួនាទី:</strong> @Model.Role</p>
+                        <p class="mb-3"><strong>អ៊ីម៉ែល:</strong> @Model.Email</p>
                     </div>
                 </div>
                 <div class="alert alert-dark text-black">
@@ -29,7 +29,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">បិទ</button>
             </div>
         </div>
     </div>

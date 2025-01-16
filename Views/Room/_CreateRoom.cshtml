@@ -1,6 +1,6 @@
 ﻿@model Room
 @{
-    ViewData["Title"] = "Relax Hotel | Create Room";
+    ViewData["Title"] = "Relax Hotel | បង្កើត បន្ទប់";
 }
 <div class="modal fade" id="AddRoom" tabindex="-1" aria-labelledby="AddRoomModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -12,71 +12,70 @@
                 </div>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body fw-bold">
                 <form asp-action="Create" method="post" enctype="multipart/form-data">
-                    <div class="row g-3">
+                    <div class="row">
                         <div class="col-6">
                             <!-- Room Number -->
-                            <div class="col-md-12 form-group">
-                                <label asp-for="RoomNumber" class="form-label"></label>
-                                <span asp-validation-for="RoomNumber" class="text-danger"></span>
-                                <input asp-for="RoomNumber" class="form-control" placeholder="Enter Room Number" />
-                            </div>
-                            <div class="col-md-12 form-group">
-                                <label asp-for="RoomType" class="form-label"></label>
-                                <span asp-validation-for="RoomType" class="text-danger"></span>
-                                <select asp-for="RoomType" class="form-select">
-                                    <option value="">Select Room Type</option>
-                                    <option value="Single">Single</option>
-                                    <option value="Double">Double</option>
-                                    <option value="Suite">Suite</option>
-                                </select>
-                            </div>
+                            <div class="row">
+                                <div class="col-md-6 form-group">
+                                    <label asp-for="RoomNumber" class="form-label">លេខបន្ទប់</label>
+                                    <span asp-validation-for="RoomNumber" class="text-danger"></span>
+                                    <input asp-for="RoomNumber" class="form-control" placeholder="បញ្ចូលលេខបន្ទប់" />
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <label asp-for="RoomType" class="form-label">ប្រភេទបន្ទប់</label>
+                                    <span asp-validation-for="RoomType" class="text-danger"></span>
+                                    <select asp-for="RoomType" class="form-select form-control">
+                                        <option value="">ជ្រើសរើសប្រភេទបន្ទប់</option>
+                                        <option value="Single">Single</option>
+                                        <option value="Double">Double</option>
+                                        <option value="Suite">Suite</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <label asp-for="AvailabilityStatus" class="form-label">ស្ថានភាពបន្ទប់</label>
+                                    <span asp-validation-for="AvailabilityStatus" class="text-danger"></span>
+                                    <select asp-for="AvailabilityStatus" class="form-select form-control">
+                                        <option value="">ជ្រើសរើសស្ថានភាពបន្ទប់</option>
+                                        <option value="Available">Available</option>
+                                        <option value="Occupied">Occupied</option>
+                                        <option value="Maintenance">Maintenance</option>
+                                    </select>
+                                </div>
 
-                            <!-- Availability Status -->
-                            <div class="col-md-12 form-group">
-                                <label asp-for="AvailabilityStatus" class="form-label"></label>
-                                <span asp-validation-for="AvailabilityStatus" class="text-danger"></span>
-                                <select asp-for="AvailabilityStatus" class="form-select">
-                                    <option value="">Select Availability Status</option>
-                                    <option value="Available">Available</option>
-                                    <option value="Occupied">Occupied</option>
-                                    <option value="Maintenance">Maintenance</option>
-                                </select>
-                            </div>
 
-                            <!-- Floor -->
-                            <div class="col-md-12 form-group">
-                                <label asp-for="Floor" class="form-label"></label>
-                                <span asp-validation-for="Floor" class="text-danger"></span>
-                                <input asp-for="Floor" type="number" class="form-control" placeholder="Enter Floor" />
-                            </div>
+                                <div class="col-md-6 form-group">
+                                    <label asp-for="Floor" class="form-label">ជាន់បន្ទប់</label>
+                                    <span asp-validation-for="Floor" class="text-danger"></span>
+                                    <input asp-for="Floor" type="number" class="form-control" placeholder="Enter Floor" />
+                                </div>
 
-                            <!-- Bed Count -->
-                            <div class="col-md-12 form-group">
-                                <label asp-for="BedCount" class="form-label"></label>
-                                <span asp-validation-for="BedCount" class="text-danger"></span>
-                                <input asp-for="BedCount" type="number" class="form-control" placeholder="Enter Bed Count" />
-                            </div>
+                                <div class="col-md-6 form-group">
+                                    <label asp-for="BedCount" class="form-label">ចំនួនគ្រែ</label>
+                                    <span asp-validation-for="BedCount" class="text-danger"></span>
+                                    <input asp-for="BedCount" type="number" class="form-control" placeholder="បញ្ចូលចំនួនបន្ទប់" />
+                                </div>
 
-                            <!-- Room Price -->
-                            <div class="col-md-12 form-group">
-                                <label asp-for="RoomPrice" class="form-label"></label>
-                                <span asp-validation-for="RoomPrice" class="text-danger"></span>
-                                <input asp-for="RoomPrice" class="form-control" placeholder="Enter Room Price" />
-                            </div>
+                    
+                                <div class="col-md-6 form-group">
+                                    <label asp-for="RoomPrice" class="form-label">តម្លៃបន្ទប់</label>
+                                    <span asp-validation-for="RoomPrice" class="text-danger"></span>
+                                    <input asp-for="RoomPrice" class="form-control" placeholder="បញ្ចូលតម្លៃបន្ទប់" />
+                                </div>
 
-                            <!-- Description -->
-                            <div class="col-md-12 form-group">
-                                <label asp-for="Description" class="form-label"></label>
-                                <span asp-validation-for="Description" class="text-danger"></span>
-                                <textarea asp-for="Description" class="form-control" placeholder="Enter Description"></textarea>
+                                <div class="col-md-12 form-group">
+                                    <label asp-for="Description" class="form-label">ការពិពណ៌នា</label>
+                                    <span asp-validation-for="Description" class="text-danger"></span>
+                                    <textarea asp-for="Description" class="form-control"></textarea>
+                                </div>
                             </div>
+                          
                         </div>
-                        <!-- Upload Picture -->
+    
                         <div class="col-6">
-                            <div class="col-md-12 form-group" style="margin-left:20px;">
-                                <label for="pictureFile" class="form-label">Upload Picture</label>
+                            <div class="col-md-12 form-group">
+                                <label for="pictureFile" class="form-label">បញ្ចូលរូបភាព</label>
                                 <input type="file" name="pictureFile" id="pictureFile" class="form-control d-none" accept="image/*" onchange="showPreview(event)" />
                                 <div id="preview" onclick="triggerFileInput()" style="cursor: pointer;">
                                     <img src="/img/default-img.png" alt="Default Image" class="img-thumbnail" style="width: 350px; height: 350px; object-fit: cover;" />
@@ -85,7 +84,6 @@
                         </div>
                     </div>
 
-                    <!-- Modal Footer -->
                     <div class="modal-footer mt-4">
                         <a class="btn btn-danger" asp-action="Index">Close</a>
                         <button type="submit" class="btn btn-primary">Save</button>

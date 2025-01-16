@@ -1,7 +1,7 @@
 ﻿@model AppUser
 
 @{
-    ViewData["Title"] = "Relax Hotel | Edit User";
+    ViewData["Title"] = "Relax Hotel |​ កែប្រែអ្នកប្រើប្រាស់";
 }
 <div class="card mt-2 mb-4">
     <div class="card-header bg-dark  text-white">
@@ -10,29 +10,29 @@
             <h4 class="ms-2">@ViewData["Title"]</h4>
         </div>
     </div>
-    <div class="card-body ">
+    <div class="card-body fw-bold">
         <form asp-action="Edit" method="post" enctype="multipart/form-data">
     <input type="hidden" asp-for="AppUserID" />
     <div class="row g-3">
                 <div class="col-6">
         <div class="col-12 col-md-12 form-group">
-            <label asp-for="Username"></label>
+            <label asp-for="Username">ឈ្មោះអ្នកប្រើប្រាស់</label>
             <span asp-validation-for="Username" class="text-danger"></span>
             <input asp-for="Username" class="form-control" />
         </div>
         <div class="col-md-12 form-group">
-              <label asp-for="Email" class="form-label"></label>
+              <label asp-for="Email" class="form-label">អ៊ីម៉ែល</label>
                <span asp-validation-for="Email" class="text-danger"></span>
               <input asp-for="Email" class="form-control" placeholder="Enter Email"/>
         </div>
         <div class="col-12 col-md-12 form-group">
-            <label asp-for="Password"></label>
+            <label asp-for="Password">លេខកូដ</label>
             <span asp-validation-for="Password" class="text-danger"></span>
-            <input asp-for="Password" type="password" class="form-control" placeholder="Password is not Show" />
+            <input asp-for="Password" type="password" class="form-control" placeholder="លេខកូដមិនបង្ហាញ" />
         </div>
 
         <div class="col-12 col-md-12 form-group">
-            <label asp-for="Role"></label>
+            <label asp-for="Role">តួនាទី</label>
             <span asp-validation-for="Role" class="text-danger"></span>
             <select asp-for="Role" class="form-control">
                 <option value="">Select Role</option>
@@ -42,7 +42,7 @@
         </div>
 
         <div class="col-12 col-md-12 form-group">
-            <label>Permissions</label>
+            <label>ការអនុញ្ញាត</label>
             <span asp-validation-for="Permissions" class="text-danger"></span>
             <div class="d-flex flex-wrap">
                 <div class="form-check mr-3">
@@ -62,7 +62,7 @@
                 </div>
         <div class="col-6">
              <div class="col-12 col-md-12 form-group" style="margin-left:120px;">
-                   <label for="pictureFile">Upload Picture</label>
+                   <label for="pictureFile">បញ្ចូល​រូបភាព</label>
                    <input type="file" name="pictureFile" id="pictureFile" class="form-control" accept="image/*" style="display: none;" onchange="showPreview(event)" />
                    <div id="preview" onclick="triggerFileInput()">
                        <img src="@Model.Pictures" alt="User Image" class="img-thumbnail" style="width: 350px; height: 350px; object-fit: cover;" />
@@ -72,8 +72,8 @@
         
     </div>
     <div class="modal-footer">
-        <a class="btn btn-secondary" asp-action="Index">Close</a>
-        <button type="submit" class="btn btn-primary">Save</button>
+        <a class="btn btn-danger" asp-action="Index">បិទ</a>
+        <button type="submit" class="btn btn-primary">កែប្រែ</button>
     </div>
 </form>
     </div>

@@ -78,7 +78,9 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Function</h6>
                 <a class="collapse-item" asp-area="" asp-controller="AppUser" asp-action="Index"><i class="fa-solid fa-user-gear"></i> Users</a>
-                <a class="collapse-item" asp-area="" asp-controller="Account" asp-action="Login"><i class="fa-solid fa-power-off"></i> Logout</a>
+                <a class="collapse-item" asp-area="" asp-controller="Account" asp-action="Logout" onclick="return confirm('Are you sure you want to log out?');">
+                    <i class="fa-solid fa-power-off"></i> Logout
+                </a>
             </div>
         </div>
     </li>
