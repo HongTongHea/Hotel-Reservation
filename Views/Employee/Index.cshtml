@@ -1,19 +1,19 @@
-﻿@model IEnumerable<Hotel_Reservation.Models.Customer>
+﻿@model IEnumerable<Hotel_Reservation.Models.Employee>
 
 @{
     int index = 1;
-    ViewData["Title"] = "Relax Hotel | ព័ត៌មានអតិថិជន";
+    ViewData["Title"] = "Relax Hotel | ព័ត៌មានបុគ្គលិក";
 }
 
 <div class="card">
     <div class="card-header bg-dark text-white">
         <div class="d-flex align-items-center justify-content-center">
             <img src="~/img/logo-hotel-bg.png" width="60px" />
-        <h5 class="ms-2">@ViewData["Title"]</h5>
+            <h5 class="ms-2">@ViewData["Title"]</h5>
         </div>
     </div>
     <div class="card-body">
-        <button type="button" class="btn btn-success mb-2" data-bs-toggle="modal" data-bs-target="#AddCustomer">
+        <button type="button" class="btn btn-success mb-2" data-bs-toggle="modal" data-bs-target="#AddEmployee">
             <i class="fa-solid fa-circle-plus"></i> បង្កើតថ្មី
         </button>
         <div class="table-responsive">
@@ -21,13 +21,12 @@
                 <thead class="table-dark">
                     <tr>
                         <th style="width: 5%;">No</th>
-                        <th style="width: 30%;">នាមត្រកូល</th>
-                        <th style="width: 25%;">គោត្ដនាម</th>
-                        <th style="width: 5%;">ភេទ</th>
+                        <th style="width: 20%;">នាមត្រកូល</th>
+                        <th style="width: 20%;">គោត្ដនាម</th>
                         <th style="width: 25%;">អ៊ីម៉ែល</th>
                         <th style="width: 15%;">លេខទូរស័ព្ទ</th>
-                        <th style="width: 40%;">លិខិតឆ្លងដែន</th>
-                        <th style="width: 5%;">ប្រទេស</th>
+                        <th style="width: 40%;">មុខតំណែង</th>
+                        <th style="width: 40%;">ប្រាក់ខែ</th>
                         <th style="width: 15%;">Actions</th>
                     </tr>
                 </thead>
@@ -38,30 +37,28 @@
                         {
                             <tr>
                                 <td class="text-center">@index</td>
-
                                 <td>@item.FirstName</td>
                                 <td>@item.LastName</td>
-                                <td>@item.Gender</td>
                                 <td>@item.Email</td>
                                 <td>@item.PhoneNumber</td>
-                                <td>@item.PassportNumber</td>
-                                <td>@item.Country</td>
+                                <td>@item.Position</td>
+                                <td>$@item.Salary</td>
                                 <td class="text-center">
                                     <div class="d-flex align-items-center">
-                                    <button type="button" class="btn btn-info btn-sm me-2" data-bs-toggle="modal" data-bs-target="@("#EditCustomer-" + item.CustomerID)" data-url="@Url.Action($"Edit/{item.CustomerID}")">
-                                        <i class="fas fa-edit"></i>
-                                    </button> 
-                                    @await Html.PartialAsync("_EditCustomer", item)
+                                        <button type="button" class="btn btn-info btn-sm me-2" data-bs-toggle="modal" data-bs-target="@("#EditEmployee-" + item.EmployeeID)" data-url="@Url.Action($"Edit/{item.EmployeeID}")">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        @await Html.PartialAsync("_EditEmployee", item)
 
-                                        <button type="button" class="btn btn-info btn-sm me-2" data-bs-toggle="modal" data-bs-target="@("#DetailCustomer-" + item.CustomerID)" data-url="@Url.Action($"Detail/{item.CustomerID}")">
+                                        <button type="button" class="btn btn-info btn-sm me-2" data-bs-toggle="modal" data-bs-target="@("#DetailEmployee-" + item.EmployeeID)" data-url="@Url.Action($"Detail/{item.EmployeeID}")">
                                             <i class="fas fa-info-circle"></i>
-                                        </button> 
-                                        @await Html.PartialAsync("_DetailCustomer", item)
+                                        </button>
+                                        @await Html.PartialAsync("_DetailEmployee", item)
 
-                                    <button type="button" class="btn btn-danger btn-sm me-2" data-bs-toggle="modal" data-bs-target="@("#DeleteCustomer-" + item.CustomerID)" data-url="@Url.Action($"Delete/{item.CustomerID}")">
-                                        <i class="fas fa-trash-alt"></i>
-                                    </button> 
-                                    @await Html.PartialAsync("_DeleteCustmer", item)
+                                        <button type="button" class="btn btn-danger btn-sm me-2" data-bs-toggle="modal" data-bs-target="@("#DeleteEmployee-" + item.EmployeeID)" data-url="@Url.Action($"Delete/{item.EmployeeID}")">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </button>
+                                        @await Html.PartialAsync("_DeleteEmployee", item)
                                     </div>
                                 </td>
                             </tr>
@@ -78,8 +75,8 @@
             </table>
         </div>
     </div>
- </div>
-@await Html.PartialAsync("_CreateCustomer", new Customer())
+</div>
+@await Html.PartialAsync("_CreateEmployee", new Employee())
 
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
 @section Scripts {

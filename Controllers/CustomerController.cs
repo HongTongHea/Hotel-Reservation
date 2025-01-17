@@ -37,18 +37,15 @@ namespace Hotel_Reservation.Controllers
                     _context.Customer.Add(customer);
                     _context.SaveChanges();
 
-                    TempData["SuccessMessage"] = "User created successfully!";
+                    TempData["SuccessMessage"] = "Customer created successfully!";
                     return RedirectToAction("Index");
                 }
                 catch (Exception ex)
                 {
-                    // Log the exception (ex) here
                     ModelState.AddModelError("", "An error occurred while saving the customer.");
                 }
             }
-
-            // If validation fails, return the partial view with validation errors
-            TempData["ShowCreateModal"] = true; // Flag to show the modal again
+            TempData["ShowCreateModal"] = true;
             return PartialView("_CreateCustomer", customer);
         }
 
@@ -72,18 +69,18 @@ namespace Hotel_Reservation.Controllers
                     _context.Customer.Update(customer);
                     _context.SaveChanges();
 
-                    TempData["SuccessMessage"] = "User updated successfully!";
+                    TempData["SuccessMessage"] = "Customer updated successfully!";
                     return RedirectToAction("Index");
                 }
                 catch (Exception ex)
                 {
-                    // Log the exception (ex) here
+
                     ModelState.AddModelError("", "An error occurred while updating the customer.");
                 }
             }
 
-            // If validation fails, return the partial view with validation errors
-            TempData["ShowEditModal"] = true; // Flag to show the modal again
+
+            TempData["ShowEditModal"] = true;
             return PartialView("_EditCustomer", customer);
         }
 
@@ -111,12 +108,12 @@ namespace Hotel_Reservation.Controllers
                 _context.Customer.Remove(customer);
                 _context.SaveChanges();
 
-                TempData["SuccessMessage"] = "User deleted successfully!";
+                TempData["SuccessMessage"] = "Customer deleted successfully!";
                 return RedirectToAction("Index");
             }
             catch (Exception ex)
             {
-                // Log the exception (ex) here
+
                 TempData["ErrorMessage"] = "An error occurred while deleting the customer.";
                 return RedirectToAction("Index");
             }

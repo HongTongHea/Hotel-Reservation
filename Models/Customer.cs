@@ -17,7 +17,7 @@ namespace Hotel_Reservation.Models
 
         [Required]
         [StringLength(100)]
-        public string Sex { get; set; }
+        public string Gender { get; set; }
 
         [Required]
         [StringLength(255)]

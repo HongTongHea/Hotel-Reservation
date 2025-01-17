@@ -27,12 +27,12 @@
                                 <input asp-for="LastName" type="text" class="form-control" />
                             </div>
                              <div class="col-md-6 form-group">
-                                <label asp-for="Sex" class="form-label">ភេទ</label>
-                                <span asp-validation-for="Sex" class="text-danger"></span>
-                                <select asp-for="Sex" class="form-select">
+                            <label asp-for="Gender" class="form-label">ភេទ</label>
+                            <span asp-validation-for="Gender" class="text-danger"></span>
+                            <select asp-for="Gender" class="form-select">
                                     <option value="">ជ្រើសរើសភេទ</option>
-                                    <option value="Male" selected="@(Model.Sex == "Male")">Male</option>
-                                    <option value="Female" selected="@(Model.Sex == "Female")">Female</option>
+                                <option value="Male" selected="@(Model.Gender == "Male")">បុរស</option>
+                                <option value="Female" selected="@(Model.Gender == "Female")">ស្រ្តី</option>
                                 </select>
                             </div>
 

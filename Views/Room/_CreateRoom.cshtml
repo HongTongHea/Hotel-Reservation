@@ -1,6 +1,6 @@
 ﻿@model Room
 @{
-    ViewData["Title"] = "Relax Hotel | បង្កើត បន្ទប់";
+    ViewData["Title"] = "Relax Hotel | បង្កើតបន្ទប់";
 }
 <div class="modal fade" id="AddRoom" tabindex="-1" aria-labelledby="AddRoomModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -28,9 +28,9 @@
                                     <span asp-validation-for="RoomType" class="text-danger"></span>
                                     <select asp-for="RoomType" class="form-select form-control">
                                         <option value="">ជ្រើសរើសប្រភេទបន្ទប់</option>
-                                        <option value="Single">Single</option>
-                                        <option value="Double">Double</option>
-                                        <option value="Suite">Suite</option>
+                                        <option value="Single">បន្ទប់តែមួយ</option>
+                                        <option value="Double">បន្ទប់ពីរ</option>
+                                        <option value="Suite">បន្ទប់ជាឈុត</option>
                                     </select>
                                 </div>
                                 <div class="col-md-6 form-group">
@@ -38,9 +38,8 @@
                                     <span asp-validation-for="AvailabilityStatus" class="text-danger"></span>
                                     <select asp-for="AvailabilityStatus" class="form-select form-control">
                                         <option value="">ជ្រើសរើសស្ថានភាពបន្ទប់</option>
-                                        <option value="Available">Available</option>
-                                        <option value="Occupied">Occupied</option>
-                                        <option value="Maintenance">Maintenance</option>
+                                        <option value="Available">មាន</option>
+                                        <option value="Booked">បានកក់</option>
                                     </select>
                                 </div>
 
@@ -48,13 +47,13 @@
                                 <div class="col-md-6 form-group">
                                     <label asp-for="Floor" class="form-label">ជាន់បន្ទប់</label>
                                     <span asp-validation-for="Floor" class="text-danger"></span>
-                                    <input asp-for="Floor" type="number" class="form-control" placeholder="Enter Floor" />
+                                    <input asp-for="Floor" type="number" class="form-control" placeholder="បញ្ចូលជាន់បន្ទប់" />
                                 </div>
 
                                 <div class="col-md-6 form-group">
                                     <label asp-for="BedCount" class="form-label">ចំនួនគ្រែ</label>
                                     <span asp-validation-for="BedCount" class="text-danger"></span>
-                                    <input asp-for="BedCount" type="number" class="form-control" placeholder="បញ្ចូលចំនួនបន្ទប់" />
+                                    <input asp-for="BedCount" type="number" class="form-control" placeholder="បញ្ចូលចំនួនគ្រែ" />
                                 </div>
 
                     

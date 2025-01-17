@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Hotel_Reservation.Models
 {
@@ -22,9 +23,8 @@ namespace Hotel_Reservation.Models
         public int? Floor { get; set; }
         public int? BedCount { get; set; }
 
-        [Required]
-        [MaxLength(100)]
-        public string RoomPrice { get; set; }
+        [Column(TypeName = "decimal(10, 2)")]
+        public decimal? RoomPrice { get; set; }
 
         [MaxLength(255)]
         public string? Description { get; set; }

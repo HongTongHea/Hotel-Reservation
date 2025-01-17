@@ -24,31 +24,31 @@
     <li class="nav-item">
         <a class="nav-link">
             <i class="bi bi-buildings-fill"></i>
-            <span>Hotel Resveration</span>
+            <span>ការកក់សណ្ឋាគារ</span>
         </a>
     </li>
     <li class="nav-item">
         <a class="nav-link">
             <i class="fas fa-user-tie"></i>
-            <span>Services</span>
+            <span>សេវាកម្ម</span>
         </a>
     </li>
     <li class="nav-item">
         <a class="nav-link" asp-area="" asp-controller="Room" asp-action="Index">
             <i class="fa-solid fa-bed"></i>
-            <span>Rooms</span>
+            <span>បន្ទប់</span>
         </a>
     </li>
     <li class="nav-item">
         <a class="nav-link" asp-area="" asp-controller="Customer" asp-action="Index">
             <i class="fas fa-user-friends"></i>
-            <span>Customers</span>
+            <span>អតិថិជន</span>
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link">
-            <i class="far fa-id-badge"></i>
-            <span>Employees</span>
+        <a class="nav-link" asp-area="" asp-controller="Employee" asp-action="Index">
+            <i class="fa-solid fa-id-badge"></i>
+            <span>បុគ្គលិក</span>
         </a>
     </li>
     <li class="nav-item">
@@ -56,13 +56,13 @@
            data-target="#collapseTable1" aria-expanded="true"
            aria-controls="collapseTable">
             <i class="bi bi-coin"></i>
-            <span>Invoice</span>
+            <span>ការបង់ប្រាក់</span>
         </a>
         <div id="collapseTable1" class="collapse"
              aria-labelledby="headingTable" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Payment</h6>
-                <a class="collapse-item"><i class="fa-solid fa-file-invoice"></i> bills</a>
+                <h6 class="collapse-header">ការទូទាត់</h6>
+                <a class="collapse-item"><i class="fa-solid fa-file-invoice"></i> វិក្កយបត្រ</a>
             </div>
         </div>
     </li>
@@ -71,13 +71,18 @@
            data-target="#collapseTable" aria-expanded="true"
            aria-controls="collapseTable">
             <i class="fa-solid fa-gear"></i>
-            <span>Setting</span>
+            <span>
+                ការកំណត់
+            </span>
         </a>
         <div id="collapseTable" class="collapse"
              aria-labelledby="headingTable" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Function</h6>
-                <a class="collapse-item" asp-area="" asp-controller="AppUser" asp-action="Index"><i class="fa-solid fa-user-gear"></i> Users</a>
+                <h6 class="collapse-header">មុខងារ</h6>
+                <a class="collapse-item" asp-area="" asp-controller="AppUser" asp-action="Index">
+                    <i class="fa-solid fa-user-gear"></i>
+                    អ្នកប្រើប្រាស់
+                </a>
                 <a class="collapse-item" asp-area="" asp-controller="Account" asp-action="Logout" onclick="return confirm('Are you sure you want to log out?');">
                     <i class="fa-solid fa-power-off"></i> Logout
                 </a>

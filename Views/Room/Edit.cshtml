@@ -1,7 +1,7 @@
 ﻿@model Room
 
 @{
-    ViewData["Title"] = "Relax Hotel | Edit Room";
+    ViewData["Title"] = "Relax Hotel | កែប្រែបន្ទប់";
 }
 <div class="card mt-2 mb-4">
     <div class="card-header bg-dark text-white">
@@ -10,60 +10,61 @@
             <h4 class="ms-2">@ViewData["Title"]</h4>
         </div>
     </div>
-    <div class="card-body">
+    <div class="card-body fw-bold">
         <form asp-action="Edit" method="post" enctype="multipart/form-data">
             <input type="hidden" asp-for="RoomID" />
             <div class="row g-3">
                 <div class="col-6">
-                    <div class="col-12 col-md-12 form-group">
-                        <label asp-for="RoomNumber"></label>
+                    <div class="row">
+                    <div class="col-12 col-md-6 form-group">
+                        <label asp-for="RoomNumber">លេខបន្ទប់</label>
                         <span asp-validation-for="RoomNumber" class="text-danger"></span>
                         <input asp-for="RoomNumber" class="form-control" />
                     </div>
-                    <div class="col-md-12 form-group">
-                        <label asp-for="RoomType" class="form-label"></label>
+                    <div class="col-md-6 form-group">
+                            <label asp-for="RoomType" class="form-label">ប្រភេទបន្ទប់</label>
                         <span asp-validation-for="RoomType" class="text-danger"></span>
                         <select asp-for="RoomType" class="form-control">
-                            <option value="">Select Room Type</option>
-                            <option value="Single">Single</option>
-                            <option value="Double">Double</option>
-                            <option value="Suite">Suite</option>
+                                <option value="">ជ្រើសរើសប្រភេទបន្ទប់</option>
+                                <option value="Single">បន្ទប់តែមួយ</option>
+                                <option value="Double">បន្ទប់ពីរ</option>
+                                <option value="Suite">បន្ទប់ជាឈុត</option>
                         </select>
                     </div>
-                    <div class="col-12 col-md-12 form-group">
-                        <label asp-for="AvailabilityStatus"></label>
+                    <div class="col-12 col-md-6 form-group">
+                            <label asp-for="AvailabilityStatus">ស្ថានភាពបន្ទប់</label>
                         <span asp-validation-for="AvailabilityStatus" class="text-danger"></span>
                         <select asp-for="AvailabilityStatus" class="form-control">
-                            <option value="">Select Availability Status</option>
-                            <option value="Available">Available</option>
-                            <option value="Occupied">Occupied</option>
-                            <option value="Maintenance">Maintenance</option>
+                                <option value="">ជ្រើសរើសស្ថានភាពបន្ទប់</option>
+                            <option value="Available">មាន</option>
+                            <option value="Booked">បានកក់</option>
                         </select>
                     </div>
-                    <div class="col-md-12 form-group">
-                        <label asp-for="Floor" class="form-label"></label>
+                    <div class="col-md-6 form-group">
+                            <label asp-for="Floor" class="form-label">ជាន់បន្ទប់</label>
                         <span asp-validation-for="Floor" class="text-danger"></span>
                         <input asp-for="Floor" type="number" class="form-control" placeholder="Enter Floor" />
                     </div>
-                    <div class="col-md-12 form-group">
-                        <label asp-for="BedCount" class="form-label"></label>
+                    <div class="col-md-6 form-group">
+                            <label asp-for="BedCount" class="form-label">ចំនួនគ្រែ</label>
                         <span asp-validation-for="BedCount" class="text-danger"></span>
                         <input asp-for="BedCount" type="number" class="form-control" placeholder="Enter Bed Count" />
                     </div>
-                    <div class="col-md-12 form-group">
-                        <label asp-for="RoomPrice" class="form-label"></label>
+                    <div class="col-md-6 form-group">
+                            <label asp-for="RoomPrice" class="form-label">តម្លៃបន្ទប់</label>
                         <span asp-validation-for="RoomPrice" class="text-danger"></span>
                         <input asp-for="RoomPrice" class="form-control" placeholder="Enter Room Price" />
                     </div>
-                    <div class="col-md-12 form-group">
-                        <label asp-for="Description" class="form-label"></label>
+                    <div class="col-md-6 form-group">
+                            <label asp-for="Description" class="form-label">ការពិពណ៌នា</label>
                         <span asp-validation-for="Description" class="text-danger"></span>
                         <textarea asp-for="Description" class="form-control" placeholder="Enter Description"></textarea>
+                    </div>
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="col-12 col-md-12 form-group" style="margin-left:120px;">
-                        <label for="pictureFile">Upload Picture</label>
+                        <label for="pictureFile">បញ្ចូលរូបភាព</label>
                         <input type="file" name="pictureFile" id="pictureFile" class="form-control" accept="image/*" style="display: none;" onchange="showPreview(event)" />
                         <div id="preview" onclick="triggerFileInput()">
                             <img src="@Model.Pictures" alt="Room Image" class="img-thumbnail" style="width: 350px; height: 350px; object-fit: cover;" />
@@ -72,8 +73,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <a class="btn btn-secondary" asp-action="Index">Close</a>
-                <button type="submit" class="btn btn-primary">Save</button>
+                <a class="btn btn-danger" asp-action="Index">បិទ</a>
+                <button type="submit" class="btn btn-primary">រក្សារទុក</button>
             </div>
         </form>
     </div>

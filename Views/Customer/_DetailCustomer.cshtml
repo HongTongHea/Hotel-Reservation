@@ -1,0 +1,33 @@
+﻿@model Customer
+@{
+    ViewData["Title"] = "Relax Hotel | ព័ត៌មានលម្អិតអតិថិជន";
+}
+
+<div class="modal fade" id="DetailCustomer-@Model.CustomerID" tabindex="-1" aria-labelledby="DetailUserModalLabel" aria-hidden="true">
+    <div class="modal-dialog text-black">
+        <div class="modal-content">
+            <div class="modal-header bg-dark text-white">
+                <div class="d-flex align-items-center justify-content-center">
+                    <img src="~/img/logo-hotel-bg.png" width="40px" />
+                    <h5 class="ms-2">@ViewData["Title"]</h5>
+                </div>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row mb-4">
+                    <div class="col-md-12 text-start">
+                        <p class="mb-3"><strong>ឈ្នោះអតិថិជន: </strong>@Model.FirstName @Model.LastName</p>
+                        <p class="mb-3"><strong>ភេទ: </strong>@Model.Gender</p>
+                        <p class="mb-3"><strong>អ៊ីម៉ែល: </strong>@Model.Email</p>
+                        <p class="mb-3"><strong>លេខទូរស័ព្ទ: </strong>@Model.PhoneNumber</p>
+                        <p class="mb-3"><strong>លេខលិខិតឆ្លងដែន: </strong>@Model.PassportNumber</p>
+                        <p class="mb-3"><strong>ប្រទេស: </strong>@Model.Country</p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">បិទ</button>
+            </div>
+        </div>
+    </div>
+</div>
