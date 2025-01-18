@@ -1,5 +1,66 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model Employee
 @{
+    ViewData["Title"] = "Relax Hotel | កែប្រែអតិថិជន";
 }
+<div class="modal fade" id="EditEmployee-@Model.EmployeeID" tabindex="-1" aria-labelledby="EditModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-dark text-white">
+                <div class="d-flex align-items-center justify-content-center">
+                    <img src="~/img/logo-hotel-bg.png" width="40px" />
+                    <h5 class="ms-2">@ViewData["Title"]</h5>
+                </div>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-start fw-bold">
+                <form asp-action="Edit" method="post" enctype="multipart/form-data">
+                    <input type="hidden" asp-for="EmployeeID" />
+                    <div class="row fw-bold">
+                        <div class="col-md-6">
+                            <label asp-for="FirstName">នាមត្រកូល</label>
+                            <input asp-for="FirstName" class="form-control" />
+                            <span asp-validation-for="FirstName" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label asp-for="LastName">គោត្ដនាម</label>
+                            <input asp-for="LastName" class="form-control" />
+                            <span asp-validation-for="LastName" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label asp-for="Email">អ៊ីម៉ែល</label>
+                            <input asp-for="Email" class="form-control" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label asp-for="PhoneNumber">លេខទូរស័ព្ទ</label>
+                            <input asp-for="PhoneNumber" class="form-control" />
+                            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label asp-for="Position">មុខដំណែង</label>
+                            <select asp-for="Position" class="form-control">
+                                <option value="Manager">អ្នកគ្រប់គ្រង</option>
+                                <option value="Receptionist">អ្នកទទួលភ្ញៀវ</option>
+                                <option value="Housekeeper">អ្នកលាងសម្អាត</option>
+                                <option value="Chef">ចុងភៅ</option>
+                                <option value="Waiter">បុគ្គលិកបម្រើ</option>
+                                <option value="Security">សន្តិសុខ</option>
+                            </select>
+                            <span asp-validation-for="Position" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label asp-for="Salary">ប្រាក់ខែ</label>
+                            <input asp-for="Salary" class="form-control" />
+                            <span asp-validation-for="Salary" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <a class="btn btn-danger text-white" data-bs-dismiss="modal">បិទ</a>
+                        <button type="submit" class="btn btn-primary">កែប្រែ</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -2,7 +2,7 @@
 @{
     ViewData["Title"] = "Relax Hotel | កែប្រែអតិថិជន";
 }
-<div class="modal fade" id="EditCustomer-@Model.CustomerID" tabindex="-1" aria-labelledby="EditUserModalLabel" aria-hidden="true">
+<div class="modal fade" id="EditCustomer-@Model.CustomerID" tabindex="-1" aria-labelledby="EditModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header bg-dark text-white">
@@ -58,7 +58,7 @@
                             </div>
                     </div>
                     <div class="modal-footer">
-                        <a class="btn btn-danger" asp-action="Index">បិទ</a>
+                        <a class="btn btn-danger text-white" data-bs-dismiss="modal">បិទ</a>
                         <button type="submit" class="btn btn-primary">កែប្រែ</button>
                     </div>
                 </form>

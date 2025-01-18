@@ -2,7 +2,7 @@
 @{
     ViewData["Title"] = "Relax Hotel | លុបអតិថិជន";
 }
-<div class="modal fade" id="DeleteCustomer-@Model.CustomerID" tabindex="-1" aria-labelledby="DeleteUserModalLabel" aria-hidden="true">
+<div class="modal fade" id="DeleteCustomer-@Model.CustomerID" tabindex="-1" aria-labelledby="DeleteModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header bg-dark text-white">
@@ -13,12 +13,12 @@
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form asp-action="Delete" method="post" enctype="multipart/form-data">
+                <form asp-action="ConfirmDelete" method="post" enctype="multipart/form-data">
                     <input type="hidden" asp-for="CustomerID" />
 
                     <div class="mb-3​ fw-bold">
                         <p>តើអ្នកកប្រាកដទេថាចង់លុបអតិថិជននេះ?</p>
-
+                        <p><strong>@Model.FirstName @Model.LastName</strong></p>
                     </div>
 
                     <div class="modal-footer">

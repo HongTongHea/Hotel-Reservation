@@ -95,9 +95,9 @@ namespace Hotel_Reservation.Controllers
         }
 
         [HttpPost]
-        public IActionResult DeleteConfirmed(int id)
+        public IActionResult ConfirmDelete(int CustomerID)
         {
-            Customer customer = GetCustomerById(id);
+            Customer customer = GetCustomerById(CustomerID);
             if (customer == null)
             {
                 return NotFound();

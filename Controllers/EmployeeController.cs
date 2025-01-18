@@ -60,26 +60,22 @@ namespace Hotel_Reservation.Controllers
         }
 
         [HttpPost]
-
         public IActionResult Edit(Employee employee)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 try
                 {
                     _context.Employee.Update(employee);
                     _context.SaveChanges();
 
-                    TempData["SuccessMessage"] = "Emplyee update Successfully";
+                    TempData["SuccessMessage"] = "Employee updated successfully!";
                     return RedirectToAction("Index");
-
-
                 }
                 catch (Exception ex)
                 {
-                    ModelState.AddModelError("", "An error occurred while saving the Employee.");
+                    ModelState.AddModelError("", "An error occurred while updating the Employee.");
                 }
-
             }
             TempData["ShowEditModal"] = true;
             return PartialView("_EditEmployee", employee);
@@ -96,34 +92,31 @@ namespace Hotel_Reservation.Controllers
         }
 
         [HttpPost]
-
-        public IActionResult ConfirmDelte(int id)
+        public IActionResult ConfirmDelete(int EmployeeID)
         {
-            Employee employee = GetEmployeeById(id);
+            Employee employee = GetEmployeeById(EmployeeID);
             if (employee == null)
             {
-                return NotFound();
+                TempData["ErrorMessage"] = "Employee not found.";
+                return RedirectToAction("Index");
             }
             try
             {
                 _context.Employee.Remove(employee);
                 _context.SaveChanges();
 
-                TempData["SuccessMessage"] = "Employee delete Successfully";
+                TempData["SuccessMessage"] = "Employee deleted successfully!";
                 return RedirectToAction("Index");
-
             }
             catch (Exception ex)
             {
-                TempData["ErrorMessage"] = "An error occurred while deleting the Employee.";
+                TempData["ErrorMessage"] = "An error occurred while deleting the employee.";
                 return RedirectToAction("Index");
             }
-
         }
-
         private Employee GetEmployeeById(int id)
         {
-            return _context.Employee.FirstOrDefault(c => c.EmployeeID == id);
+            return _context.Employee.FirstOrDefault(e => e.EmployeeID == id);
         }
     }
 }
