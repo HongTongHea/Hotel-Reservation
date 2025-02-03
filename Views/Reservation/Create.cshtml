@@ -1,0 +1,81 @@
+﻿@model Reservation
+
+@{
+    ViewData["Title"] = "Relax Hotel | បង្កើតការកក់";
+}
+
+<div class="card mt-2 mb-4">
+    <div class="card-header bg-dark text-white">
+        <div class="d-flex align-items-center justify-content-center">
+            <img src="~/img/logo-hotel-bg.png" width="50px" />
+            <h4 class="ms-2">@ViewData["Title"]</h4>
+        </div>
+    </div>
+    <div class="card-body fw-bold">
+        <form asp-action="Create">
+            <div class="row fw-bold">
+                <div class="col-12 col-md-6 form-group">
+                    <label asp-for="CustomerID">អតិថិជន</label>
+                    <select asp-for="CustomerID" asp-items="ViewBag.Customers" class="form-control">
+                        <option value="" disabled selected>ជ្រើសរើសអតិថិជន</option>
+                    </select>
+                    <span asp-validation-for="CustomerID" class="text-danger"></span>
+                </div>
+
+                <div class="col-12 col-md-6 form-group">
+                    <label asp-for="RoomID">បន្ទប់</label>
+                    <select asp-for="RoomID" asp-items="ViewBag.Rooms" class="form-control">
+                        <option value="" disabled selected>ជ្រើសរើសបន្ទប់</option>
+                    </select>
+                    <span asp-validation-for="RoomID" class="text-danger"></span>
+                </div>
+
+                <div class="col-12 col-md-6 form-group">
+                    <label asp-for="CheckInDate">ថ្ងៃចូល</label>
+                    <input asp-for="CheckInDate" type="date" class="form-control" />
+                    <span asp-validation-for="CheckInDate" class="text-danger"></span>
+                </div>
+
+                <div class="col-12 col-md-6 form-group">
+                    <label asp-for="CheckOutDate">ថ្ងៃចេញ</label>
+                    <input asp-for="CheckOutDate" type="date" class="form-control" />
+                    <span asp-validation-for="CheckOutDate" class="text-danger"></span>
+                </div>
+
+                <div class="col-12 col-md-6 form-group">
+                    <label asp-for="NumberOfChildren">ក្មេង</label>
+                    <input asp-for="NumberOfChildren" type="number" class="form-control" placeholder="បញ្ចូលចំនួនក្មេង" />
+                    <span asp-validation-for="NumberOfChildren" class="text-danger"></span>
+                </div>
+
+                <div class="col-12 col-md-6 form-group">
+                    <label asp-for="NumberOfAdults">មនុស្សពេញវ័យ</label>
+                    <input asp-for="NumberOfAdults" type="number" class="form-control" placeholder="បញ្ចូលចំនួនមនុស្សពេញវ័យ" />
+                    <span asp-validation-for="NumberOfAdults" class="text-danger"></span>
+                </div>
+
+                <div class="col-12 col-md-6 form-group">
+                    <label asp-for="TotalPrice">តម្លៃសរុប</label>
+                    <input asp-for="TotalPrice" type="text" class="form-control" placeholder="បញ្ចូលតម្លៃសរុប" />
+                    <span asp-validation-for="TotalPrice" class="text-danger"></span>
+                </div>
+
+                <div class="col-12 col-md-6 form-group">
+                    <label asp-for="PaymentStatus">ស្ថានភាពបង់ប្រាក់</label>
+                    <select asp-for="PaymentStatus" class="form-control form-select">
+                        <option value="" disabled selected>ជ្រើសរើសស្ថានភាពបង់ប្រាក់</option>
+                        <option value="Pending">Pending</option>
+                        <option value="Paid">Paid</option>
+                        <option value="Cancelled">Cancelled</option>
+                    </select>
+                    <span asp-validation-for="PaymentStatus" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="text-end">
+                <a class="btn btn-danger" asp-action="Index">មើលបញ្ជីរ</a>
+                <button type="submit" class="btn btn-primary">រក្សាទុក</button>
+            </div>
+          
+        </form>
+    </div>
+</div>

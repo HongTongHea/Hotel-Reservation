@@ -31,5 +31,7 @@ namespace Hotel_Reservation.Models
 
         [MaxLength(255)]
         public string? Pictures { get; set; }
+
+        public ICollection<Reservation> Reservations { get; set; } = new List<Reservation>();
     }
 }

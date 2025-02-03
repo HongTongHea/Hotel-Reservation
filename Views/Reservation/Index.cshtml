@@ -1,0 +1,118 @@
+﻿@model IEnumerable<Hotel_Reservation.Models.Reservation>
+
+@{
+    int index = 1;
+    ViewData["Title"] = "Relax Hotel | ព័ត៌មានការកក់បន្ទប់";
+}
+
+<div class="card">
+    <div class="card-header bg-dark text-white">
+        <div class="d-flex align-items-center justify-content-center">
+            <img src="~/img/logo-hotel-bg.png" width="60px" />
+            <h5 class="ms-2">@ViewData["Title"]</h5>
+        </div>
+    </div>
+   
+
+    <div class="card-body">
+        <a asp-action="Create" class="btn btn-success mb-2">
+            <i class="fa-solid fa-circle-plus"></i> បង្កើតថ្មី
+        </a>
+        <div id="calendar"></div>
+    </div>
+</div>
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css">
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/locales/km.js"></script> <!-- Khmer Language -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var calendarEl = document.getElementById('calendar');
+
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth',
+            locale: 'km',
+            events: @Html.Raw(Json.Serialize(Model.Select(r => new
+        {
+            id = r.ReservationID,
+            title = "បន្ទប់ " + r.Room.RoomNumber + " - " + r.Customer.FirstName + " " + r.Customer.LastName,
+            start = r.CheckInDate.ToString("yyyy-MM-dd"),
+            end = r.CheckOutDate.ToString("yyyy-MM-dd"),
+            color = "#007bff"
+        }))),
+
+            eventClick: function (info) {
+                var ReservationID = info.event.id;
+
+                var modalHtml = `
+                    <div id="eventModal" class="modal fade" tabindex="-1">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                    <div class="modal-header bg-dark text-white">
+                                        <div class="d-flex align-items-center justify-content-center">
+                                        <img src="/img/logo-hotel-bg.png" width="60px" />
+                                        <h5 class="ms-2">Relax Hotel | កែប្រែការកក់បន្ទប់</h5>
+                                    </div>
+                                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <p><strong>Room:</strong> ${info.event.title}</p>
+                                    <p><strong>Start Date:</strong> ${info.event.start.toISOString().split('T')[0]}</p>
+                                    <p><strong>End Date:</strong> ${info.event.end ? info.event.end.toISOString().split('T')[0] : ''}</p>
+                                </div>
+                                <div class="modal-footer">
+                                        <a href="/Reservation/Edit/${ReservationID}" class="btn btn-warning">កែប្រែ</a>
+                                        <form action="/Reservation/Delete/${ReservationID}" method="post" onsubmit="return confirm('Are you sure you want to delete this reservation?');">
+                                        <button type="submit" class="btn btn-danger">លុប</button>
+                                    </form>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">បិត</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>`;
+
+                document.body.insertAdjacentHTML('beforeend', modalHtml);
+                var eventModal = new bootstrap.Modal(document.getElementById('eventModal'));
+                eventModal.show();
+
+                document.getElementById('eventModal').addEventListener('hidden.bs.modal', function () {
+                    document.getElementById('eventModal').remove();
+                });
+            }
+        });
+
+        calendar.render();
+    });
+
+</script>
+
+@section Scripts {
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="~/js/DataTable.js"></script>
+
+    @if (TempData["ShowCreateModal"] != null && (bool)TempData["ShowCreateModal"])
+    {
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#AddReservation').modal('show');
+            });
+        </script>
+    }
+    <script>
+        $(document).ready(function () {
+            var successMessage = '@TempData["SuccessMessage"]';
+            if (successMessage) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success',
+                    text: successMessage,
+                });
+            }
+        });
+    </script>
+}

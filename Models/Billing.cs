@@ -21,6 +21,8 @@ namespace Hotel_Reservation.Models
         public string PaymentMethod { get; set; }
 
         [ForeignKey("ReservationID")]
-        public virtual Reservation Reservation { get; set; }
+        public Reservation? Reservation { get; set; }
+
+
     }
 }

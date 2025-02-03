@@ -21,18 +21,28 @@ namespace Hotel_Reservation.Models
         public DateTime CheckOutDate { get; set; }
 
         [Required]
-        public int NumberOfChilderns { get; set; }
+        public int NumberOfChildren { get; set; }
 
         [Required]
         public int NumberOfAdults { get; set; }
 
+        [Column(TypeName = "decimal(20, 2)")]
+        public decimal? TotalPrice { get; set; }
+
+        [Required]
+        public string PaymentStatus { get; set; }
+
         public DateTime CreatedAt { get; set; } = DateTime.Now;
 
         [ForeignKey("CustomerID")]
-        public virtual Customer Customer { get; set; }
+        public Customer? Customer { get; set; }
 
         [ForeignKey("RoomID")]
-        public virtual Room Room { get; set; }
+        public Room? Room { get; set; }
+
+        public ICollection<Billing> Billings { get; set; } = new List<Billing>();
 
     }
+
+
 }

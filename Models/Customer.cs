@@ -35,6 +35,6 @@ namespace Hotel_Reservation.Models
         [StringLength(255)]
         public string Country { get; set; }
 
-
+        public ICollection<Reservation> Reservations { get; set; } = new List<Reservation>();
     }
 }

@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Hotel_Reservation.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250107171314_InitialCreate")]
+    [Migration("20250202073025_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -82,7 +82,7 @@ namespace Hotel_Reservation.Migrations
 
                     b.HasIndex("AppUserID");
 
-                    b.ToTable("AppUserPermissions");
+                    b.ToTable("AppUserPermission");
                 });
 
             modelBuilder.Entity("Hotel_Reservation.Models.Billing", b =>
@@ -137,6 +137,11 @@ namespace Hotel_Reservation.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<string>("Gender")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -151,11 +156,6 @@ namespace Hotel_Reservation.Migrations
                         .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
-
-                    b.Property<string>("Sex")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("CustomerID");
 
@@ -229,11 +229,18 @@ namespace Hotel_Reservation.Migrations
                     b.Property<int>("NumberOfAdults")
                         .HasColumnType("int");
 
-                    b.Property<int>("NumberOfChilderns")
+                    b.Property<int>("NumberOfChildren")
                         .HasColumnType("int");
+
+                    b.Property<string>("PaymentStatus")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("RoomID")
                         .HasColumnType("int");
+
+                    b.Property<decimal?>("TotalPrice")
+                        .HasColumnType("decimal(20, 2)");
 
                     b.HasKey("ReservationID");
 
@@ -252,14 +259,15 @@ namespace Hotel_Reservation.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RoomID"));
 
-                    b.Property<int>("AvailabilityStatus")
-                        .HasColumnType("int");
+                    b.Property<string>("AvailabilityStatus")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<int?>("BedCount")
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
@@ -267,7 +275,6 @@ namespace Hotel_Reservation.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Pictures")
-                        .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
@@ -276,13 +283,13 @@ namespace Hotel_Reservation.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<string>("RoomPrice")
+                    b.Property<decimal?>("RoomPrice")
+                        .HasColumnType("decimal(10, 2)");
+
+                    b.Property<string>("RoomType")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
-
-                    b.Property<int>("RoomTypeID")
-                        .HasColumnType("int");
 
                     b.HasKey("RoomID");
 
@@ -324,7 +331,7 @@ namespace Hotel_Reservation.Migrations
             modelBuilder.Entity("Hotel_Reservation.Models.Billing", b =>
                 {
                     b.HasOne("Hotel_Reservation.Models.Reservation", "Reservation")
-                        .WithMany()
+                        .WithMany("Billings")
                         .HasForeignKey("ReservationID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -335,15 +342,15 @@ namespace Hotel_Reservation.Migrations
             modelBuilder.Entity("Hotel_Reservation.Models.Reservation", b =>
                 {
                     b.HasOne("Hotel_Reservation.Models.Customer", "Customer")
-                        .WithMany()
+                        .WithMany("Reservations")
                         .HasForeignKey("CustomerID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Hotel_Reservation.Models.Room", "Room")
-                        .WithMany()
+                        .WithMany("Reservations")
                         .HasForeignKey("RoomID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Customer");
@@ -354,6 +361,21 @@ namespace Hotel_Reservation.Migrations
             modelBuilder.Entity("Hotel_Reservation.Models.AppUser", b =>
                 {
                     b.Navigation("Permissions");
+                });
+
+            modelBuilder.Entity("Hotel_Reservation.Models.Customer", b =>
+                {
+                    b.Navigation("Reservations");
+                });
+
+            modelBuilder.Entity("Hotel_Reservation.Models.Reservation", b =>
+                {
+                    b.Navigation("Billings");
+                });
+
+            modelBuilder.Entity("Hotel_Reservation.Models.Room", b =>
+                {
+                    b.Navigation("Reservations");
                 });
 #pragma warning restore 612, 618
         }

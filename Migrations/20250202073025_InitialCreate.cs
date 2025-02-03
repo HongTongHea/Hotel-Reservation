@@ -36,7 +36,7 @@ namespace Hotel_Reservation.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FirstName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Sex = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Gender = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Email = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     PhoneNumber = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     PassportNumber = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
@@ -73,13 +73,13 @@ namespace Hotel_Reservation.Migrations
                     RoomID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     RoomNumber = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    RoomTypeID = table.Column<int>(type: "int", nullable: false),
-                    AvailabilityStatus = table.Column<int>(type: "int", nullable: false),
+                    RoomType = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    AvailabilityStatus = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Floor = table.Column<int>(type: "int", nullable: true),
                     BedCount = table.Column<int>(type: "int", nullable: true),
-                    RoomPrice = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
-                    Pictures = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false)
+                    RoomPrice = table.Column<decimal>(type: "decimal(10,2)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
+                    Pictures = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -101,7 +101,7 @@ namespace Hotel_Reservation.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "AppUserPermissions",
+                name: "AppUserPermission",
                 columns: table => new
                 {
                     PermissionID = table.Column<int>(type: "int", nullable: false)
@@ -111,9 +111,9 @@ namespace Hotel_Reservation.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AppUserPermissions", x => x.PermissionID);
+                    table.PrimaryKey("PK_AppUserPermission", x => x.PermissionID);
                     table.ForeignKey(
-                        name: "FK_AppUserPermissions_AppUser_AppUserID",
+                        name: "FK_AppUserPermission_AppUser_AppUserID",
                         column: x => x.AppUserID,
                         principalTable: "AppUser",
                         principalColumn: "AppUserID",
@@ -130,8 +130,10 @@ namespace Hotel_Reservation.Migrations
                     RoomID = table.Column<int>(type: "int", nullable: false),
                     CheckInDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CheckOutDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    NumberOfChilderns = table.Column<int>(type: "int", nullable: false),
+                    NumberOfChildren = table.Column<int>(type: "int", nullable: false),
                     NumberOfAdults = table.Column<int>(type: "int", nullable: false),
+                    TotalPrice = table.Column<decimal>(type: "decimal(20,2)", nullable: true),
+                    PaymentStatus = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
@@ -142,13 +144,13 @@ namespace Hotel_Reservation.Migrations
                         column: x => x.CustomerID,
                         principalTable: "Customer",
                         principalColumn: "CustomerID",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Reservation_Room_RoomID",
                         column: x => x.RoomID,
                         principalTable: "Room",
                         principalColumn: "RoomID",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -174,8 +176,8 @@ namespace Hotel_Reservation.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_AppUserPermissions_AppUserID",
-                table: "AppUserPermissions",
+                name: "IX_AppUserPermission_AppUserID",
+                table: "AppUserPermission",
                 column: "AppUserID");
 
             migrationBuilder.CreateIndex(
@@ -198,7 +200,7 @@ namespace Hotel_Reservation.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "AppUserPermissions");
+                name: "AppUserPermission");
 
             migrationBuilder.DropTable(
                 name: "Billing");
