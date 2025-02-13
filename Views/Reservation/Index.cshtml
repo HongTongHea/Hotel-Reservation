@@ -63,11 +63,7 @@
                                 </div>
                                 <div class="modal-footer">
                                         <a href="/Reservation/Edit/${ReservationID}" class="btn btn-warning">កែប្រែ</a>
-                                                 <form action="/Reservation/DeleteConfirmed" method="post" onsubmit="return confirm('Are you sure you want to delete this reservation?');">
-                                                    <input type="hidden" name="id" value="${ReservationID}">
-                                                    <button type="submit" class="btn btn-danger">លុប</button>
-                                                  </form>
-
+                                        <a href="/Reservation/Delete/${ReservationID}" class="btn btn-danger">លុប</a>
 
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">បិត</button>
                                 </div>

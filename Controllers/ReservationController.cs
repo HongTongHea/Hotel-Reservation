@@ -140,27 +140,38 @@ namespace Hotel_Reservation.Controllers
             return View(reservation);
         }
 
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed([FromForm] int id)  // ✅ Ensure ID comes from Form
+        public async Task<IActionResult> Delete(int? id)
         {
-            var reservation = await _context.Reservation.FindAsync(id);
-            if (reservation == null)
+            if (id == null)
             {
-                TempData["ErrorMessage"] = "Reservation not found!";
-                return RedirectToAction(nameof(Index));
+                return NotFound();
             }
 
-            _context.Reservation.Remove(reservation);
-            await _context.SaveChangesAsync();
+            var reservation = await _context.Reservation
+                .Include(r => r.Room)
+                .Include(r => r.Customer)
+                .FirstOrDefaultAsync(m => m.ReservationID == id);
+            if (reservation == null)
+            {
+                return NotFound();
+            }
 
-            TempData["SuccessMessage"] = "Reservation deleted successfully!";
-            return RedirectToAction(nameof(Index));
+            return View(reservation);
         }
 
-
-
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var reservation = await _context.Reservation.FindAsync(id);
+            if (reservation != null)
+            {
+                _context.Reservation.Remove(reservation);
+                await _context.SaveChangesAsync();
+                TempData["SuccessMessage"] = "Reservation deleted successfully!";
+            }
+            return RedirectToAction(nameof(Index));
+        }
 
         private bool ReservationExists(int id)
         {
